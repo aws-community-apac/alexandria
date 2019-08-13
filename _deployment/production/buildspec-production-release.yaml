@@ -1,0 +1,47 @@
+version: 0.2
+
+env:
+  variables:
+    hugo_url: "https://github.com/gohugoio/hugo/releases/download/v0.42.1/hugo_0.42.1_Linux-64bit.tar.gz"
+    hugo_local_folder: "_hugo"
+    hugo_file: "hugo.tar.gz"
+  parameter-store:
+    alexandria_production_url: "alexandria-production-url"
+    alexandria_production_cloudfront: "alexandria-production-cloudfront"
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.12
+
+    commands:
+      - echo Entered the install phase...
+      - apt-get install -y wget
+      - mkdir $hugo_local_folder
+      - cd $hugo_local_folder
+      - wget -t0 "$hugo_url" -O "$hugo_file"
+      - tar -xzvf $hugo_file
+     
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...      
+      - cd ../
+      - ls -alh
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - echo "Checking content folder"
+      - ls -alh content/
+      - ls -alh $hugo_local_folder
+      - ./$hugo_local_folder/hugo
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+      - aws s3 sync --delete --acl "public-read" public/ s3://$alexandria_production_url
+      - rm -rf $hugo_local_folder
+      - rm -rf ./public/
+      - aws cloudfront create-invalidation --distribution-id=$alexandria_production_cloudfront --paths /      
+      - rm -rf $hugo_local_folder
+      - rm -rf ./public/

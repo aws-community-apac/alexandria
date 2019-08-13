@@ -1,0 +1,29 @@
+# baseURL = "http://alexandria-aws-user-group-staging.s3-website-ap-southeast-1.amazonaws.com/"
+languageCode = "en-us"
+title = "AWS Community Blog"
+theme = "alexandria"
+DefaultContentLanguage = "en"
+buildDrafts = false
+buildFuture = false
+contentDir = "content"
+defaultExtension = "html"
+disableHugoGeneratorInject = true
+disableKinds = [""]
+disableLiveReload = false
+enableEmoji = true
+googleAnalytics = ""
+pygmentsStyle = "monokai"
+watch = true
+[languages]
+	[languages.en]
+		languageName = "English"
+		contentDir = "content/en"
+	[languages.id]
+		languageName = "Bahasa Indonesia"
+		contentDir = "content/id"
+	[languages.th]
+		languageName = "Thai"
+		contentDir = "content/th"
+	[languages.vn]
+		languageName = "Vietnamese"
+		contentDir = "content/vn"

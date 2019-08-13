@@ -1,0 +1,6 @@
+[submodule "themes/alexandria"]
+	path = themes/alexandria
+	url = https://github.com/aws-user-group-asean/alexandria-theme.git
+[submodule "content"]
+	path = content
+	url = https://github.com/aws-user-group-asean/alexandria-theme.git

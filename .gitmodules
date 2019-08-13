@@ -3,4 +3,4 @@
 	url = https://github.com/aws-user-group-asean/alexandria-theme.git
 [submodule "content"]
 	path = content
-	url = https://github.com/aws-user-group-asean/alexandria-theme.git
+	url = https://github.com/aws-user-group-asean/alexandria-content.git
